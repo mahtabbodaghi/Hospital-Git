@@ -1,13 +1,17 @@
-package org.example;
+package Doctor;
+
+import DataBase.DataBase;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StaffAddPage {
+public class DoctorAddPage {
     JFrame frame;
-    public StaffAddPage(){
+    JTextField nameField, lastNameField, ageField, nationalIdField, SpecialField;
+    JButton submitButton;
+    public DoctorAddPage(){
         frame = new JFrame("Hospital Management System");
         frame.setBounds(200, 100, 1000, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,7 +27,7 @@ public class StaffAddPage {
         nameLabel.setVerticalAlignment(JLabel.CENTER);
 
 
-        JTextField nameField = new JTextField();
+        nameField = new JTextField();
         nameField.setFont(new Font("Andale Mono", Font.BOLD, 18));
 
 
@@ -32,7 +36,7 @@ public class StaffAddPage {
         lastNameLabel.setHorizontalAlignment(JLabel.CENTER);
         lastNameLabel.setVerticalAlignment(JLabel.CENTER);
 
-        JTextField lastNameField = new JTextField();
+        lastNameField = new JTextField();
         lastNameField.setFont(new Font("Andale Mono", Font.BOLD, 18));
 
         JLabel ageLabel = new JLabel("Age: ");
@@ -40,7 +44,7 @@ public class StaffAddPage {
         ageLabel.setHorizontalAlignment(JLabel.CENTER);
         ageLabel.setVerticalAlignment(JLabel.CENTER);
 
-        JTextField ageField = new JTextField();
+        ageField = new JTextField();
         ageField.setFont(new Font("Andale Mono", Font.BOLD, 18));
 
         JLabel nationalIdLabel = new JLabel("National ID: ");
@@ -48,16 +52,16 @@ public class StaffAddPage {
         nationalIdLabel.setHorizontalAlignment(JLabel.CENTER);
         nationalIdLabel.setVerticalAlignment(JLabel.CENTER);
 
-        JTextField nationalIdField = new JTextField();
+        nationalIdField = new JTextField();
         nationalIdField.setFont(new Font("Andale Mono", Font.BOLD, 18));
 
-        JLabel posLabel = new JLabel("Position: ");
-        posLabel.setFont(new Font("Andale Mono", Font.BOLD, 24));
-        posLabel.setHorizontalAlignment(JLabel.CENTER);
-        posLabel.setVerticalAlignment(JLabel.CENTER);
+        JLabel SpeciLabel = new JLabel("Specialization: ");
+        SpeciLabel.setFont(new Font("Andale Mono", Font.BOLD, 24));
+        SpeciLabel.setHorizontalAlignment(JLabel.CENTER);
+        SpeciLabel.setVerticalAlignment(JLabel.CENTER);
 
-        JTextField posField = new JTextField();
-        posField.setFont(new Font("Andale Mono", Font.BOLD, 18));
+        SpecialField = new JTextField();
+        SpecialField.setFont(new Font("Andale Mono", Font.BOLD, 18));
 
 
 
@@ -69,15 +73,15 @@ public class StaffAddPage {
         panel.add(ageField);
         panel.add(nationalIdLabel);
         panel.add(nationalIdField);
-        panel.add(posLabel);
-        panel.add(posField);
+        panel.add(SpeciLabel);
+        panel.add(SpecialField);
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.setBackground(new Color(40, 152, 255));
 
 
-        JButton submitButton = new JButton("Submit");
+        submitButton = new JButton("Submit");
         submitButton.setFont(new Font("Andale Mono", Font.BOLD, 24));
         submitButton.setVerticalAlignment(JButton.CENTER);
         submitButton.setAlignmentX(JButton.CENTER);
@@ -90,14 +94,11 @@ public class StaffAddPage {
                 String lastName = lastNameField.getText();
                 String age = ageField.getText();
                 String nationalId = nationalIdField.getText();
-                String pos = posField.getText();
+                String spec = SpecialField.getText();
+
 
                 // Print the input values
-                System.out.println("Name: " + name);
-                System.out.println("Last Name: " + lastName);
-                System.out.println("Age: " + age);
-                System.out.println("National ID: " + nationalId);
-                System.out.println("Position: " + pos);
+                DataBase dataBase = new DataBase();
             }
         });
 
@@ -107,4 +108,5 @@ public class StaffAddPage {
         frame.add(bottomPanel);
         frame.setVisible(true);
     }
+
 }

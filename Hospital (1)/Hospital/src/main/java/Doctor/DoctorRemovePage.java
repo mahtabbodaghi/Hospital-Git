@@ -1,4 +1,4 @@
-package org.example;
+package Doctor;
 
 import javax.swing.*;
 import java.awt.*;

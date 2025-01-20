@@ -1,4 +1,4 @@
-package org.example;
+package Nurse;
 
 import javax.swing.*;
 import java.awt.*;

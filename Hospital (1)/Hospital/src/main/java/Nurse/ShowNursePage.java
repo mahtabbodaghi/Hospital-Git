@@ -1,10 +1,10 @@
-package org.example;
+package Nurse;
 
 import javax.swing.*;
 
-public class ShowStaffPage {
+public class ShowNursePage {
     JFrame frame;
-    public ShowStaffPage(){
+    public ShowNursePage(){
         frame = new JFrame("Hospital management System");
         frame.setBounds(200, 100, 1000, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

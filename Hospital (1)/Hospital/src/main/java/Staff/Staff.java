@@ -1,25 +1,25 @@
-package org.example;
+package Staff;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Doctor{
+public class Staff{
     JFrame frame;
     JPanel bottomPanel;
-    String[] texts = {"Add Doctor", "Remove Doctor", "Show Doctors"};
+    String[] texts = {"Add Staff", "Remove Staff", "Show Staffs"};
     JButton[] jButtons = new JButton[3];
-    public Doctor() {
+    public Staff(){
         frame = new JFrame("Hospital management System");
         frame.setBounds(200, 100, 1000, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
 
         bottomPanel = new JPanel();
-        bottomPanel.setLayout(new GridLayout(3, 1));
+        bottomPanel.setLayout(new GridLayout(3,1));
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i <3 ; i++) {
             jButtons[i] = new JButton(texts[i]);
             jButtons[i].setFont(new Font("Andale Mono", Font.BOLD, 40));
             jButtons[i].setBackground(new Color(109, 194, 244));
@@ -33,13 +33,13 @@ public class Doctor{
                     // Handle action for each button
                     if (e.getSource() == jButtons[0]) {
                         frame.dispose();
-                        new DoctorAddPage();
+                        new StaffAddPage();
                     } else if (e.getSource() == jButtons[1]) {
                         frame.dispose();
-                        new DoctorRemovePage();
+                        new StaffRemovePage();
                     } else if (e.getSource() == jButtons[2]) {
                         frame.dispose();
-                        new ShowDoctorPage();
+                        new ShowStaffPage();
                     }
                 }
             });

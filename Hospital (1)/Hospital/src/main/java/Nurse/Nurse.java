@@ -1,16 +1,16 @@
-package org.example;
+package Nurse;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Staff{
+public class Nurse{
     JFrame frame;
     JPanel bottomPanel;
-    String[] texts = {"Add Staff", "Remove Staff", "Show Staffs"};
+    String[] texts = {"Add Nurse", "Remove Nurse", "Show Nurses"};
     JButton[] jButtons = new JButton[3];
-    public Staff(){
+    public Nurse(){
         frame = new JFrame("Hospital management System");
         frame.setBounds(200, 100, 1000, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,13 +33,13 @@ public class Staff{
                     // Handle action for each button
                     if (e.getSource() == jButtons[0]) {
                         frame.dispose();
-                        new StaffAddPage();
+                        new NurseAddPage();
                     } else if (e.getSource() == jButtons[1]) {
                         frame.dispose();
-                        new StaffRemovePage();
+                        new NurseRemovePage();
                     } else if (e.getSource() == jButtons[2]) {
                         frame.dispose();
-                        new ShowStaffPage();
+                        new ShowNursePage();
                     }
                 }
             });

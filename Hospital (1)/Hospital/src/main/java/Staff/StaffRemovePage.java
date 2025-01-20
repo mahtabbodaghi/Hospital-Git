@@ -1,13 +1,13 @@
-package org.example;
+package Staff;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PatientRemovePage {
+public class StaffRemovePage {
     JFrame frame;
-    public PatientRemovePage() {
+    public StaffRemovePage(){
         frame = new JFrame("Hospital Management System");
         frame.setBounds(200, 100, 1000, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,8 +44,6 @@ public class PatientRemovePage {
 
                 // Print the input values
                 System.out.println("National ID: " + nationalId);
-
-                //database remove a patient
             }
         });
 

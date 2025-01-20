@@ -1,4 +1,4 @@
-package org.example;
+package Patient;
 
 import javax.swing.*;
 import java.awt.*;

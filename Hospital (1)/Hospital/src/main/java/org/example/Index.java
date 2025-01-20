@@ -1,5 +1,10 @@
 package org.example;
 
+import Doctor.Doctor;
+import Nurse.Nurse;
+import Patient.Patient;
+import Staff.Staff;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +14,7 @@ public class Index {
     JFrame frame;
     JPanel bottomPanel , welcomePanel;
     JLabel label;
-    String[] texts = {"Patient" , "Doctor" , "Nurse" , "Staff"};
+    String[] texts = {"Patient" , "Doctor", "Nurse" , "Staff"};
     JButton[] button = new JButton[4];
 
     public Index() {

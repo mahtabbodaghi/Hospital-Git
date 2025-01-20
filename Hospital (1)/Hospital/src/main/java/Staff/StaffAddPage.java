@@ -1,15 +1,13 @@
-package org.example;
+package Staff;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DoctorAddPage {
+public class StaffAddPage {
     JFrame frame;
-    JTextField nameField, lastNameField, ageField, nationalIdField, SpeciField;
-    JButton submitButton;
-    public DoctorAddPage(){
+    public StaffAddPage(){
         frame = new JFrame("Hospital Management System");
         frame.setBounds(200, 100, 1000, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,7 +23,7 @@ public class DoctorAddPage {
         nameLabel.setVerticalAlignment(JLabel.CENTER);
 
 
-        nameField = new JTextField();
+        JTextField nameField = new JTextField();
         nameField.setFont(new Font("Andale Mono", Font.BOLD, 18));
 
 
@@ -34,7 +32,7 @@ public class DoctorAddPage {
         lastNameLabel.setHorizontalAlignment(JLabel.CENTER);
         lastNameLabel.setVerticalAlignment(JLabel.CENTER);
 
-        lastNameField = new JTextField();
+        JTextField lastNameField = new JTextField();
         lastNameField.setFont(new Font("Andale Mono", Font.BOLD, 18));
 
         JLabel ageLabel = new JLabel("Age: ");
@@ -42,7 +40,7 @@ public class DoctorAddPage {
         ageLabel.setHorizontalAlignment(JLabel.CENTER);
         ageLabel.setVerticalAlignment(JLabel.CENTER);
 
-        ageField = new JTextField();
+        JTextField ageField = new JTextField();
         ageField.setFont(new Font("Andale Mono", Font.BOLD, 18));
 
         JLabel nationalIdLabel = new JLabel("National ID: ");
@@ -50,16 +48,16 @@ public class DoctorAddPage {
         nationalIdLabel.setHorizontalAlignment(JLabel.CENTER);
         nationalIdLabel.setVerticalAlignment(JLabel.CENTER);
 
-        nationalIdField = new JTextField();
+        JTextField nationalIdField = new JTextField();
         nationalIdField.setFont(new Font("Andale Mono", Font.BOLD, 18));
 
-        JLabel SpeciLabel = new JLabel("Specialization: ");
-        SpeciLabel.setFont(new Font("Andale Mono", Font.BOLD, 24));
-        SpeciLabel.setHorizontalAlignment(JLabel.CENTER);
-        SpeciLabel.setVerticalAlignment(JLabel.CENTER);
+        JLabel posLabel = new JLabel("Position: ");
+        posLabel.setFont(new Font("Andale Mono", Font.BOLD, 24));
+        posLabel.setHorizontalAlignment(JLabel.CENTER);
+        posLabel.setVerticalAlignment(JLabel.CENTER);
 
-        SpeciField = new JTextField();
-        SpeciField.setFont(new Font("Andale Mono", Font.BOLD, 18));
+        JTextField posField = new JTextField();
+        posField.setFont(new Font("Andale Mono", Font.BOLD, 18));
 
 
 
@@ -71,15 +69,15 @@ public class DoctorAddPage {
         panel.add(ageField);
         panel.add(nationalIdLabel);
         panel.add(nationalIdField);
-        panel.add(SpeciLabel);
-        panel.add(SpeciField);
+        panel.add(posLabel);
+        panel.add(posField);
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.setBackground(new Color(40, 152, 255));
 
 
-        submitButton = new JButton("Submit");
+        JButton submitButton = new JButton("Submit");
         submitButton.setFont(new Font("Andale Mono", Font.BOLD, 24));
         submitButton.setVerticalAlignment(JButton.CENTER);
         submitButton.setAlignmentX(JButton.CENTER);
@@ -92,14 +90,14 @@ public class DoctorAddPage {
                 String lastName = lastNameField.getText();
                 String age = ageField.getText();
                 String nationalId = nationalIdField.getText();
-                String spec = SpeciField.getText();
+                String pos = posField.getText();
 
                 // Print the input values
                 System.out.println("Name: " + name);
                 System.out.println("Last Name: " + lastName);
                 System.out.println("Age: " + age);
                 System.out.println("National ID: " + nationalId);
-                System.out.println("Specialization: " + spec);
+                System.out.println("Position: " + pos);
             }
         });
 
