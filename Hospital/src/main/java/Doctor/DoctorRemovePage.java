@@ -1,5 +1,7 @@
 package Doctor;
 
+import DataBase.DataBase;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -42,8 +44,8 @@ public class DoctorRemovePage {
             public void actionPerformed(ActionEvent e) {
                 String nationalId = nationalIdField.getText();
 
-                // Print the input values
-                System.out.println("National ID: " + nationalId);
+                DataBase dataBase = new DataBase();
+                dataBase.removeDoctor(nationalId);
             }
         });
 

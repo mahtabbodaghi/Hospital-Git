@@ -11,7 +11,7 @@ public class DataBase {
 
     String url = "jdbc:mysql://localhost:3306/hospital";
     String username = "root";
-    String password = "MahtabBodaghi83";
+    String password = "MahtabBodagh83";
 
     Connection connection;
 
@@ -37,8 +37,19 @@ public class DataBase {
             pstmt.setString(5, doctor.getSpecialty());
 
             int rowsInserted = pstmt.executeUpdate();
-            System.out.println(rowsInserted + " row(s) inserted.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void removeDoctor(String nationalId){
+        String sql = "DELETE FROM doctors WHERE national_id = ?";
+
+        try{
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, nationalId);
+
+            int rowsDeleted = pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
