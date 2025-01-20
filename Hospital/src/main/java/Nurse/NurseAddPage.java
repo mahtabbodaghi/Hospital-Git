@@ -1,6 +1,8 @@
 package Nurse;
 
-import org.example.Main;
+import DataBase.DataBase;
+import Models.Nurse;
+import org.example.Index;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +11,6 @@ import java.awt.event.ActionListener;
 
 public class NurseAddPage {
     JFrame frame;
-    JButton backButton;
     public NurseAddPage(){
         frame = new JFrame("Hospital Management System");
         frame.setBounds(200, 100, 1000, 900);
@@ -79,15 +80,6 @@ public class NurseAddPage {
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.setBackground(new Color(40, 152, 255));
 
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-
-                switchToMainMenu();
-            }
-        });
-
 
         JButton submitButton = new JButton("Submit");
         submitButton.setFont(new Font("Andale Mono", Font.BOLD, 24));
@@ -104,33 +96,48 @@ public class NurseAddPage {
                 String nationalId = nationalIdField.getText();
                 String pos = posField.getText();
 
-                boolean isValid = !name.isEmpty() &&
-                        !lastName.isEmpty() &&
-                        age != 0 &&
-                        !nationalId.isEmpty() &&
-                        !pos.isEmpty();
-
-                if (!isValid) {
-                    JOptionPane.showMessageDialog(frame, "Please fill all required fields.");
+                if(
+                        name.isEmpty()
+                        || lastName.isEmpty()
+                        || age.isEmpty()
+                        || nationalId.isEmpty()
+                        || pos.isEmpty()
+                ){
+                    JOptionPane.showInternalMessageDialog(null, "Please Fill All Fields");
                     return;
                 }
 
+                Nurse nurse = new Nurse();
+                nurse.setName(name);
+                nurse.setLastName(lastName);
+                nurse.setAge(Integer.parseInt(age));
+                nurse.setNationalId(nationalId);
+                nurse.setPosition(pos);
+
                 // Print the input values
-                System.out.println("Name: " + name);
-                System.out.println("Last Name: " + lastName);
-                System.out.println("Age: " + age);
-                System.out.println("National ID: " + nationalId);
-                System.out.println("Position: " + pos);
+                DataBase dataBase = new DataBase();
+                dataBase.addNurse(nurse);
             }
         });
+
+        var back = new JButton("Back");
+        back.setFont(new Font("Andale Mono", Font.BOLD, 24));
+        back.setVerticalAlignment(JButton.CENTER);
+        back.setAlignmentX(JButton.CENTER);
+        back.setSize(400,200);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new Index();
+            }
+        });
+        bottomPanel.add(back);
 
         bottomPanel.add(submitButton);
 
         frame.add(panel);
         frame.add(bottomPanel);
         frame.setVisible(true);
-    }
-    private void switchToMainMenu() {
-        Main mainMenu = new Main();
     }
 }

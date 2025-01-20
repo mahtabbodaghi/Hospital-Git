@@ -1,6 +1,8 @@
 package Patient;
 
-import org.example.Main;
+import Models.Patient;
+import DataBase.DataBase;
+import org.example.Index;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +11,6 @@ import java.awt.event.ActionListener;
 
 public class PatientAddPage {
         JFrame frame;
-    JButton backButton;
 
         public PatientAddPage() {
             frame = new JFrame("Hospital Management System");
@@ -80,15 +81,6 @@ public class PatientAddPage {
             bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
             bottomPanel.setBackground(new Color(40, 152, 255));
 
-            backButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    frame.dispose();
-
-                    switchToMainMenu();
-                }
-            });
-
 
             JButton submitButton = new JButton("Submit");
             submitButton.setFont(new Font("Andale Mono", Font.BOLD, 24));
@@ -105,27 +97,43 @@ public class PatientAddPage {
                     String nationalId = nationalIdField.getText();
                     String illness = illnessField.getText();
 
-                    boolean isValid = !name.isEmpty() &&
-                            !lastName.isEmpty() &&
-                            age != 0 &&
-                            !nationalId.isEmpty() &&
-                            !illness.isEmpty();
-
-                    if (!isValid) {
-                        JOptionPane.showMessageDialog(frame, "Please fill all required fields.");
+                    if(
+                            name.isEmpty()
+                            || lastName.isEmpty()
+                            || age.isEmpty()
+                            || nationalId.isEmpty()
+                            || illness.isEmpty()
+                    ){
+                        JOptionPane.showInternalMessageDialog(null, "Please Fill All Fields");
                         return;
                     }
 
-                    // Print the input values
-                    System.out.println("Name: " + name);
-                    System.out.println("Last Name: " + lastName);
-                    System.out.println("Age: " + age);
-                    System.out.println("National ID: " + nationalId);
-                    System.out.println("Illness: " + illness);
+                    Patient patient = new Patient();
+                    patient.setName(name);
+                    patient.setLastName(lastName);
+                    patient.setAge(Integer.parseInt(age));
+                    patient.setNationalId(nationalId);
+                    patient.setIllness(illness);
 
-                    //database add a patient
+                    // Print the input values
+                    DataBase dataBase = new DataBase();
+                    dataBase.addPatient(patient);
                 }
             });
+
+            var back = new JButton("Back");
+            back.setFont(new Font("Andale Mono", Font.BOLD, 24));
+            back.setVerticalAlignment(JButton.CENTER);
+            back.setAlignmentX(JButton.CENTER);
+            back.setSize(400,200);
+            back.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    frame.dispose();
+                    new Index();
+                }
+            });
+            bottomPanel.add(back);
 
             bottomPanel.add(submitButton);
 
@@ -133,7 +141,4 @@ public class PatientAddPage {
             frame.add(bottomPanel);
             frame.setVisible(true);
         }
-    private void switchToMainMenu() {
-        Main mainMenu = new Main();
-    }
 }

@@ -2,26 +2,23 @@ package Doctor;
 
 import DataBase.DataBase;
 import Models.Doctor;
-import org.example.Main;
+import org.example.Index;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static com.sun.deploy.uitoolkit.ToolkitStore.dispose;
-
 public class DoctorAddPage {
     JFrame frame;
     JTextField nameField, lastNameField, ageField, nationalIdField, SpecialField;
     JButton submitButton;
-    JButton backButton;
-    public DoctorAddPage() {
+    public DoctorAddPage(){
         frame = new JFrame("Hospital Management System");
         frame.setBounds(200, 100, 1000, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.setLayout(new GridLayout(2, 1));
+        frame.setLayout(new GridLayout(2,1));
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(8, 8));
         panel.setBackground(new Color(40, 152, 255));
@@ -69,6 +66,7 @@ public class DoctorAddPage {
         SpecialField.setFont(new Font("Andale Mono", Font.BOLD, 18));
 
 
+
         panel.add(nameLabel);
         panel.add(nameField);
         panel.add(lastNameLabel);
@@ -89,47 +87,32 @@ public class DoctorAddPage {
         submitButton.setFont(new Font("Andale Mono", Font.BOLD, 24));
         submitButton.setVerticalAlignment(JButton.CENTER);
         submitButton.setAlignmentX(JButton.CENTER);
-        submitButton.setSize(400, 200);
-
-        backButton = new JButton("Back");
-        backButton.setFont(new Font("Andale Mono", Font.BOLD, 24));
-        backButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
-        backButton.setSize(400, 200);
-
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-
-                switchToMainMenu();
-            }
-        });
+        submitButton.setSize(400,200);
 
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String name = nameField.getText();
                 String lastName = lastNameField.getText();
-                int age = Integer.parseInt(ageField.getText());
+                String age =ageField.getText();
                 String nationalId = nationalIdField.getText();
                 String spec = SpecialField.getText();
 
-                boolean isValid = !name.isEmpty() &&
-                        !lastName.isEmpty() &&
-                        age != 0 &&
-                        !nationalId.isEmpty() &&
-                        !spec.isEmpty();
-
-                if (!isValid) {
-                    JOptionPane.showMessageDialog(frame, "Please fill all required fields.");
+                if(
+                        name.isEmpty()
+                        || lastName.isEmpty()
+                        || age.isEmpty()
+                        || nationalId.isEmpty()
+                        || spec.isEmpty()
+                ){
+                    JOptionPane.showInternalMessageDialog(null, "Please Fill All Fields");
                     return;
                 }
 
-                // اگر خالی نبودند خط های پایین اجرا شوند
                 Doctor doctor = new Doctor();
                 doctor.setName(name);
                 doctor.setLastName(lastName);
-                doctor.setAge(age);
+                doctor.setAge( Integer.parseInt(age));
                 doctor.setNationalId(nationalId);
                 doctor.setSpecialty(spec);
 
@@ -138,16 +121,25 @@ public class DoctorAddPage {
                 dataBase.addDoctor(doctor);
             }
         });
+        var back = new JButton("Back");
+        back.setFont(new Font("Andale Mono", Font.BOLD, 24));
+        back.setVerticalAlignment(JButton.CENTER);
+        back.setAlignmentX(JButton.CENTER);
+        back.setSize(400,200);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new Index();
+            }
+        });
+        bottomPanel.add(back);
 
         bottomPanel.add(submitButton);
-        bottomPanel.add(backButton);
 
         frame.add(panel);
         frame.add(bottomPanel);
         frame.setVisible(true);
+    }
 
-    }
-    private void switchToMainMenu() {
-        Main mainMenu = new Main();
-    }
 }
