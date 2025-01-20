@@ -1,5 +1,7 @@
 package Staff;
 
+import org.example.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +9,7 @@ import java.awt.event.ActionListener;
 
 public class StaffAddPage {
     JFrame frame;
+    JButton backButton;
     public StaffAddPage(){
         frame = new JFrame("Hospital Management System");
         frame.setBounds(200, 100, 1000, 900);
@@ -76,6 +79,14 @@ public class StaffAddPage {
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.setBackground(new Color(40, 152, 255));
 
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+
+                switchToMainMenu();
+            }
+        });
 
         JButton submitButton = new JButton("Submit");
         submitButton.setFont(new Font("Andale Mono", Font.BOLD, 24));
@@ -92,6 +103,17 @@ public class StaffAddPage {
                 String nationalId = nationalIdField.getText();
                 String pos = posField.getText();
 
+                boolean isValid = !name.isEmpty() &&
+                        !lastName.isEmpty() &&
+                        age != 0 &&
+                        !nationalId.isEmpty() &&
+                        !pos.isEmpty();
+
+                if (!isValid) {
+                    JOptionPane.showMessageDialog(frame, "Please fill all required fields.");
+                    return;
+                }
+
                 // Print the input values
                 System.out.println("Name: " + name);
                 System.out.println("Last Name: " + lastName);
@@ -106,5 +128,8 @@ public class StaffAddPage {
         frame.add(panel);
         frame.add(bottomPanel);
         frame.setVisible(true);
+    }
+    private void switchToMainMenu() {
+        Main mainMenu = new Main();
     }
 }

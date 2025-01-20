@@ -1,5 +1,7 @@
 package Nurse;
 
+import org.example.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +9,7 @@ import java.awt.event.ActionListener;
 
 public class NurseRemovePage {
     JFrame frame;
+    JButton backButton;
     public NurseRemovePage(){
         frame = new JFrame("Hospital Management System");
         frame.setBounds(200, 100, 1000, 900);
@@ -30,6 +33,15 @@ public class NurseRemovePage {
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.setBackground(new Color(40, 152, 255));
 
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+
+                switchToMainMenu();
+            }
+        });
+
 
         JButton submitButton = new JButton("Submit");
         submitButton.setFont(new Font("Andale Mono", Font.BOLD, 24));
@@ -42,6 +54,13 @@ public class NurseRemovePage {
             public void actionPerformed(ActionEvent e) {
                 String nationalId = nationalIdField.getText();
 
+                boolean isValid = !nationalId.isEmpty();
+
+                if (!isValid) {
+                    JOptionPane.showMessageDialog(frame, "Please fill all required fields.");
+                    return;
+                }
+
                 // Print the input values
                 System.out.println("National ID: " + nationalId);
             }
@@ -52,5 +71,8 @@ public class NurseRemovePage {
         frame.add(panel);
         frame.add(bottomPanel);
         frame.setVisible(true);
+    }
+    private void switchToMainMenu() {
+        Main mainMenu = new Main();
     }
 }

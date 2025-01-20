@@ -1,6 +1,7 @@
 package Doctor;
 
 import DataBase.DataBase;
+import org.example.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +10,7 @@ import java.awt.event.ActionListener;
 
 public class DoctorRemovePage {
     JFrame frame;
+    JButton backButton;
     public DoctorRemovePage(){
         frame = new JFrame("Hospital Management System");
         frame.setBounds(200, 100, 1000, 900);
@@ -32,6 +34,14 @@ public class DoctorRemovePage {
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.setBackground(new Color(40, 152, 255));
 
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+
+                switchToMainMenu();
+            }
+        });
 
         JButton submitButton = new JButton("Submit");
         submitButton.setFont(new Font("Andale Mono", Font.BOLD, 24));
@@ -44,6 +54,13 @@ public class DoctorRemovePage {
             public void actionPerformed(ActionEvent e) {
                 String nationalId = nationalIdField.getText();
 
+                boolean isValid = !nationalId.isEmpty();
+
+                if (!isValid) {
+                    JOptionPane.showMessageDialog(frame, "Please fill all required fields.");
+                    return;
+                }
+
                 DataBase dataBase = new DataBase();
                 dataBase.removeDoctor(nationalId);
             }
@@ -54,5 +71,8 @@ public class DoctorRemovePage {
         frame.add(panel);
         frame.add(bottomPanel);
         frame.setVisible(true);
+    }
+    private void switchToMainMenu() {
+        Main mainMenu = new Main();
     }
 }

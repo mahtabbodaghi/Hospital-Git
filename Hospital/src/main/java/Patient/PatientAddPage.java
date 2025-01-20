@@ -1,5 +1,7 @@
 package Patient;
 
+import org.example.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +9,7 @@ import java.awt.event.ActionListener;
 
 public class PatientAddPage {
         JFrame frame;
+    JButton backButton;
 
         public PatientAddPage() {
             frame = new JFrame("Hospital Management System");
@@ -77,6 +80,15 @@ public class PatientAddPage {
             bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
             bottomPanel.setBackground(new Color(40, 152, 255));
 
+            backButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    frame.dispose();
+
+                    switchToMainMenu();
+                }
+            });
+
 
             JButton submitButton = new JButton("Submit");
             submitButton.setFont(new Font("Andale Mono", Font.BOLD, 24));
@@ -92,6 +104,17 @@ public class PatientAddPage {
                     String age = ageField.getText();
                     String nationalId = nationalIdField.getText();
                     String illness = illnessField.getText();
+
+                    boolean isValid = !name.isEmpty() &&
+                            !lastName.isEmpty() &&
+                            age != 0 &&
+                            !nationalId.isEmpty() &&
+                            !illness.isEmpty();
+
+                    if (!isValid) {
+                        JOptionPane.showMessageDialog(frame, "Please fill all required fields.");
+                        return;
+                    }
 
                     // Print the input values
                     System.out.println("Name: " + name);
@@ -110,4 +133,7 @@ public class PatientAddPage {
             frame.add(bottomPanel);
             frame.setVisible(true);
         }
+    private void switchToMainMenu() {
+        Main mainMenu = new Main();
+    }
 }
