@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class Doctor{
     JFrame frame;
     JPanel bottomPanel;
-    String[] texts = {"Add Doctor", "Remove Doctor", "Show Doctors"};
+    String[] texts = {"Add Doctor", "Remove Doctor", "Search Doctors"};
     JButton[] jButtons = new JButton[3];
     public Doctor() {
         frame = new JFrame("Hospital management System");

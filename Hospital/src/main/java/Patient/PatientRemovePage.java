@@ -55,7 +55,7 @@ public class PatientRemovePage {
             }
         });
 
-        var back = new JButton("Back");
+        JButton back = new JButton("Back");
         back.setFont(new Font("Andale Mono", Font.BOLD, 24));
         back.setVerticalAlignment(JButton.CENTER);
         back.setAlignmentX(JButton.CENTER);

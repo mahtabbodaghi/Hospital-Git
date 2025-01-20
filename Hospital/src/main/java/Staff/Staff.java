@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class Staff{
     JFrame frame;
     JPanel bottomPanel;
-    String[] texts = {"Add Staff", "Remove Staff", "Show Staffs"};
+    String[] texts = {"Add Staff", "Remove Staff", "Search Staffs"};
     JButton[] jButtons = new JButton[3];
     public Staff(){
         frame = new JFrame("Hospital management System");

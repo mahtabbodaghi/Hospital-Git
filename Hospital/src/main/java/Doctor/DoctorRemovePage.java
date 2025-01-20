@@ -19,6 +19,7 @@ public class DoctorRemovePage {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(8, 8));
         panel.setBackground(new Color(40, 152, 255));
+
         JLabel nationalIdLabel = new JLabel("National ID: ");
         nationalIdLabel.setFont(new Font("Andale Mono", Font.BOLD, 24));
         nationalIdLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -55,7 +56,7 @@ public class DoctorRemovePage {
             }
         });
 
-        var back = new JButton("Back");
+        JButton back = new JButton("Back");
         back.setFont(new Font("Andale Mono", Font.BOLD, 24));
         back.setVerticalAlignment(JButton.CENTER);
         back.setAlignmentX(JButton.CENTER);
