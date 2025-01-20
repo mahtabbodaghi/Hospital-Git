@@ -1,6 +1,7 @@
 package Doctor;
 
 import DataBase.DataBase;
+import Models.Doctor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -96,7 +97,7 @@ public class DoctorAddPage {
                 String nationalId = nationalIdField.getText();
                 String spec = SpecialField.getText();
 
-
+                
                 // Print the input values
                 DataBase dataBase = new DataBase();
             }
