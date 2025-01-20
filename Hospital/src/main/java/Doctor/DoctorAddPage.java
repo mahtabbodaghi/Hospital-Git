@@ -93,13 +93,21 @@ public class DoctorAddPage {
             public void actionPerformed(ActionEvent e) {
                 String name = nameField.getText();
                 String lastName = lastNameField.getText();
-                String age = ageField.getText();
+                int age = Integer.parseInt(ageField.getText());
                 String nationalId = nationalIdField.getText();
                 String spec = SpecialField.getText();
 
-                
+                // اگر خالی نبودند خط های پایین اجرا شوند
+                Doctor doctor = new Doctor();
+                doctor.setName(name);
+                doctor.setLastName(lastName);
+                doctor.setAge(age);
+                doctor.setNationalId(nationalId);
+                doctor.setSpecialty(spec);
+
                 // Print the input values
                 DataBase dataBase = new DataBase();
+                dataBase.addDoctor(doctor);
             }
         });
 
