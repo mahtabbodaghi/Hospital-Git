@@ -8,7 +8,7 @@ public class DataBase {
 
     String url = "jdbc:mysql://localhost:3306/hospital";
     String username = "root";
-    String password = "Mosi_5180204453";
+    String password = "MahtabBodaghi83";
 
     Connection connection;
 
