@@ -1,11 +1,13 @@
 package Patient;
 
+import DataBase.DataBase;
 import org.example.Index;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ShowPatientPage {
     JFrame frame;
@@ -50,6 +52,18 @@ public class ShowPatientPage {
                     JOptionPane.showInternalMessageDialog(null, "Please Fill All Fields");
                     return;
                 }
+
+                // start of here
+                DataBase dataBase = new DataBase();
+
+                ArrayList<String[]> arrayList = dataBase.searchPatient(nationalId);
+                for (int i = 0; i < arrayList.size(); i++) {
+                    for (int j = 0; j < arrayList.get(i).length; j++) {
+                        System.out.print(arrayList.get(i)[j] + " ");
+                    }
+                    System.out.println();
+                }
+                // end of there
             }
         });
 

@@ -5,10 +5,8 @@ import Models.Nurse;
 import Models.Patient;
 import Models.Staff;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class DataBase {
 
@@ -120,8 +118,6 @@ public class DataBase {
         }
     }
 
-
-    ///
     public void addStaff(Staff staff) {
         String sql = "INSERT INTO staffs (name, last_name, age, national_id, position) VALUES (?, ?, ?, ?, ?)";
 
@@ -151,6 +147,106 @@ public class DataBase {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<String[]> searchDoctor(String nationalId){
+        String query = "SELECT name, last_name, age, specialty FROM doctors where national_id = (?)";
+        ArrayList<String[]> result = new ArrayList<>();
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+
+            // Set the parameter for the query
+            pstmt.setString(1, nationalId);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                String name = rs.getString("name");
+                String lastName = rs.getString("last_name");
+                int age = rs.getInt("age");
+                String specialty = rs.getString("specialty");
+                String[] value = {name, lastName, Integer.toString(age), specialty};
+                result.add(value);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public ArrayList<String[]> searchNurse(String nationalId){
+        String query = "SELECT name, last_name, age, position FROM nurses where national_id = (?)";
+        ArrayList<String[]> result = new ArrayList<>();
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+
+            // Set the parameter for the query
+            pstmt.setString(1, nationalId);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                String name = rs.getString("name");
+                String lastName = rs.getString("last_name");
+                int age = rs.getInt("age");
+                String specialty = rs.getString("position");
+                String[] value = {name, lastName, Integer.toString(age), specialty};
+                result.add(value);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public ArrayList<String[]> searchPatient(String nationalId){
+        String query = "SELECT name, last_name, age, illness FROM patients where national_id = (?)";
+        ArrayList<String[]> result = new ArrayList<>();
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+
+            // Set the parameter for the query
+            pstmt.setString(1, nationalId);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                String name = rs.getString("name");
+                String lastName = rs.getString("last_name");
+                int age = rs.getInt("age");
+                String specialty = rs.getString("illness");
+                String[] value = {name, lastName, Integer.toString(age), specialty};
+                result.add(value);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public ArrayList<String[]> searchStaff(String nationalId){
+        String query = "SELECT name, last_name, age, position FROM staffs where national_id = (?)";
+        ArrayList<String[]> result = new ArrayList<>();
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+
+            // Set the parameter for the query
+            pstmt.setString(1, nationalId);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                String name = rs.getString("name");
+                String lastName = rs.getString("last_name");
+                int age = rs.getInt("age");
+                String specialty = rs.getString("position");
+                String[] value = {name, lastName, Integer.toString(age), specialty};
+                result.add(value);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }
